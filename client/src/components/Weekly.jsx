@@ -50,12 +50,11 @@ class Weekly extends React.Component {
     this.handlePreviousWeekButton = this.handlePreviousWeekButton.bind(this);
     this.handleNextWeekButton = this.handleNextWeekButton.bind(this);
     this.getTasksByDay = this.getTasksByDay.bind(this);
+    this.setCurrentWeekDateRange = this.setCurrentWeekDateRange.bind(this);
     this.initializeData = this.initializeData.bind(this);
     // TODO bind other functions ??
 
  }
-
-
 
   
   componentDidMount() {
@@ -126,9 +125,7 @@ class Weekly extends React.Component {
       }
       updatedCurrentWeekData.push(tasksByDay);
       context.setState({currentWeekData: updatedCurrentWeekData});
-
       //console.log('currentWeekData: ', context.state.currentWeekData);
-
     })
     .catch ( (error) => {
       console.log(error)
