@@ -72,18 +72,19 @@ class Weekly extends React.Component {
     var context = this;
 
     console.log('initializing data...')
-      var initializeDataPROMISE = new Promise ( (resolve, reject) => {
+    var initializeDataPROMISE = new Promise ( (resolve, reject) => {
       context.setCurrentWeekDateRange();
-      resolve()
+      resolve(data)
     }) 
     
     initializeDataPROMISE
     .then( (data) => {
       context.state.currentWeekDateRange.forEach( (date) => {
+        //console.log('this is the date: ', date);
         context.getTasksByDay(date);     
-      })
+      })   
     })
-    .catch ( (error) =>{
+    .catch ( (error) => {
       console.log(error);
     })
  } 
@@ -114,9 +115,6 @@ class Weekly extends React.Component {
     var path = `/task/${userId}/${date}`;
     
     axios.get( path )
-    .then ( (results) => {
-      return results;
-    })
     .then ( (results) => {
       var updatedCurrentWeekData = context.state.currentWeekData;
       var tasksByDay = {
